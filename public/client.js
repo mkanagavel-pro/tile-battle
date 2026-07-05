@@ -15,6 +15,7 @@ const findMatchBtn = document.getElementById('findMatchBtn');
 const waitingMsg = document.getElementById('waitingMsg');
 const playAgainBtn = document.getElementById('playAgainBtn');
 const disconnectBanner = document.getElementById('disconnectBanner');
+const refreshBtn = document.getElementById("refreshBtn");
 
 const yourBoardEl = document.getElementById('yourBoard');
 const oppBoardEl = document.getElementById('oppBoard');
@@ -37,12 +38,18 @@ playAgainBtn.addEventListener('click', () => {
   waitingMsg.classList.add('hidden');
 });
 
+refreshBtn.addEventListener("click", () => {
+  socket.emit("refreshBoard");
+});
+
 socket.on('waiting', () => {
   waitingMsg.classList.remove('hidden');
 });
 
 socket.on('matchFound', () => {
   showScreen('game');
+  refreshBtn.disabled = false;
+  refreshBtn.textContent = "🔄 Refresh (3)";
 });
 
 function renderBoard(container, board, interactive) {
@@ -86,6 +93,14 @@ socket.on('gameOver', ({ yourScore, opponentScore, result }) => {
     result === 'win' ? 'YOU WIN' : result === 'lose' ? 'YOU LOSE' : 'DRAW';
   finalScoresEl.textContent = `You: ${yourScore}  |  Opponent: ${opponentScore}`;
   showScreen('gameover');
+});
+
+socket.on("refreshCount", (count) => {
+  refreshBtn.textContent = `🔄 Refresh (${count})`;
+
+  if (count <= 0) {
+    refreshBtn.disabled = true;
+  }
 });
 
 socket.on('opponentDisconnected', () => {

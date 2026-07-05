@@ -113,6 +113,10 @@ class Room {
     this.p2 = p2;
     this.boards = { [p1.id]: createBoard(), [p2.id]: createBoard() };
     this.scores = { [p1.id]: 0, [p2.id]: 0 };
+    this.refreshes = {
+      [p1.id]: 3,
+      [p2.id]: 3,
+    };
     this.timeLeft = GAME_TIME;
     this.over = false;
     p1.room = this;
@@ -157,6 +161,29 @@ class Room {
       }
       this.broadcast();
     }
+  }
+
+  refreshBoard(socket) {
+    if (this.over) return;
+
+    if (this.refreshes[socket.id] <= 0) return;
+
+    this.refreshes[socket.id]--;
+
+    const board = this.boards[socket.id];
+
+    // Normal tiles-ku mattum random colors
+    for (let r = 0; r < SIZE; r++) {
+      for (let c = 0; c < SIZE; c++) {
+        if (board[r][c].type === "normal") {
+          board[r][c].color = randColor();
+        }
+      }
+    }
+
+    socket.emit("refreshCount", this.refreshes[socket.id]);
+
+    this.broadcast();
   }
 
   broadcast() {
@@ -214,6 +241,12 @@ io.on('connection', (socket) => {
 
   socket.on('clickTile', ({ row, col }) => {
     if (socket.room) socket.room.handleClick(socket, row, col);
+  });
+
+  socket.on("refreshBoard", () => {
+    if (socket.room) {
+      socket.room.refreshBoard(socket);
+    }
   });
 
   socket.on('disconnect', () => {

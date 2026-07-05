@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Tile Battle — 2 Player Gem Duel</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tile Battle — 2 Player Gem Duel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Rajdhani:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
   <!-- ===== LOBBY ===== -->
@@ -30,11 +34,15 @@
       <div class="hud-timer">
         <span id="timeLeft">2:30</span>
       </div>
+      <button id="refreshBtn" class="refresh-btn">
+        🔄 Refresh (3)
+      </button>
       <div class="hud-block opp">
         <span class="hud-label">Opponent</span>
         <span id="oppScore" class="hud-score">0</span>
       </div>
     </header>
+
 
     <main class="boards-wrap">
       <div class="board-panel main-panel">
@@ -62,4 +70,5 @@
   <script src="/socket.io/socket.io.js"></script>
   <script src="client.js"></script>
 </body>
+
 </html>
