@@ -192,28 +192,28 @@ html, body {
   .hud-score { font-size: 1.2rem; }
 }
 
-.board.shuffling {
-  animation: boardShuffle 0.5s ease;
+.main-panel.shuffling {
+  animation: refreshFX .5s ease;
 }
 
-@keyframes boardShuffle {
+@keyframes refreshFX {
   0% {
-    transform: scale(1) rotate(0deg);
-    filter: brightness(1);
+    transform: scale(1);
+    box-shadow: 0 0 0 cyan;
   }
 
   25% {
-    transform: scale(0.95) rotate(-2deg);
-    filter: brightness(1.4);
+    transform: scale(.96);
+    box-shadow: 0 0 30px cyan;
   }
 
   50% {
-    transform: scale(1.05) rotate(2deg);
-    filter: brightness(1.8);
+    transform: scale(1.05);
+    box-shadow: 0 0 60px cyan;
   }
 
   100% {
-    transform: scale(1) rotate(0deg);
-    filter: brightness(1);
+    transform: scale(1);
+    box-shadow: 0 0 0 cyan;
   }
 }
