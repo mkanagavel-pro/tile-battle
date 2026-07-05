@@ -193,27 +193,37 @@ html, body {
 }
 
 .shuff {
-  animation: refreshFX .5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes refreshFX {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 0 cyan;
-  }
+#refreshBtn {
+  background: linear-gradient(135deg, #00e5ff, #00a2ff);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
+}
 
-  25% {
-    transform: scale(.96);
-    box-shadow: 0 0 30px cyan;
-  }
+#refreshBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(0, 229, 255, 0.8);
+}
 
-  50% {
-    transform: scale(1.05);
-    box-shadow: 0 0 60px cyan;
-  }
+#refreshBtn:active {
+  transform: scale(0.95);
+}
 
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 cyan;
-  }
+#refreshBtn:disabled {
+  background: #444;
+  color: #999;
+  cursor: not-allowed;
+  box-shadow: none;
 }
