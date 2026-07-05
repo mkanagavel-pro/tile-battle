@@ -192,7 +192,7 @@ html, body {
   .hud-score { font-size: 1.2rem; }
 }
 
-.main-panel.shuffling {
+.shuff {
   animation: refreshFX .5s ease;
 }
 
