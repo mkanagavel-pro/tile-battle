@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tile Battle — 2 Player Gem Duel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== LOBBY ===== -->
+  <section id="lobby" class="screen active">
+    <div class="lobby-card">
+      <h1 class="logo">TILE <span>BATTLE</span></h1>
+      <p class="tagline">Match gems. Score points. Bury your opponent in rubble.</p>
+      <button id="findMatchBtn" class="btn-primary">Find Opponent</button>
+      <p id="waitingMsg" class="waiting-msg hidden">Searching for an opponent…</p>
+    </div>
+  </section>
+
+  <!-- ===== GAME ===== -->
+  <section id="game" class="screen">
+    <header class="hud">
+      <div class="hud-block you">
+        <span class="hud-label">You</span>
+        <span id="yourScore" class="hud-score">0</span>
+      </div>
+      <div class="hud-timer">
+        <span id="timeLeft">2:30</span>
+      </div>
+      <div class="hud-block opp">
+        <span class="hud-label">Opponent</span>
+        <span id="oppScore" class="hud-score">0</span>
+      </div>
+    </header>
+
+    <main class="boards-wrap">
+      <div class="board-panel main-panel">
+        <h2 class="panel-title">Your Board</h2>
+        <div id="yourBoard" class="board"></div>
+      </div>
+      <div class="board-panel mini-panel">
+        <h2 class="panel-title">Opponent</h2>
+        <div id="oppBoard" class="board mini"></div>
+      </div>
+    </main>
+  </section>
+
+  <!-- ===== GAME OVER ===== -->
+  <section id="gameover" class="screen">
+    <div class="lobby-card">
+      <h1 id="resultTitle" class="logo">DRAW</h1>
+      <p id="finalScores" class="tagline">You: 0 &nbsp;|&nbsp; Opponent: 0</p>
+      <button id="playAgainBtn" class="btn-primary">Play Again</button>
+    </div>
+  </section>
+
+  <div id="disconnectBanner" class="banner hidden">Opponent disconnected. You win by default.</div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="client.js"></script>
+</body>
+</html>
