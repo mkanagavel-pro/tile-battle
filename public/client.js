@@ -38,8 +38,21 @@ playAgainBtn.addEventListener('click', () => {
   waitingMsg.classList.add('hidden');
 });
 
+const shuffleSound = new Audio("shuffle.mp3");
+
 refreshBtn.addEventListener("click", () => {
+
+  shuffleSound.currentTime = 0;
+  shuffleSound.play();
+
+  yourBoardEl.classList.add("shuffling");
+
+  setTimeout(() => {
+    yourBoardEl.classList.remove("shuffling");
+  }, 500);
+
   socket.emit("refreshBoard");
+
 });
 
 socket.on('waiting', () => {
