@@ -209,12 +209,12 @@ html, body {
   font-weight: 700;
   cursor: pointer;
   transition: all 0.25s ease;
-  box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.25);
 }
 
 #refreshBtn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 25px rgba(0, 229, 255, 0.8);
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.25);
 }
 
 #refreshBtn:active {
